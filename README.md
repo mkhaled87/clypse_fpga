@@ -1,36 +1,17 @@
-# apoclypsebm - The ApoCLypse Bitcoin Miner
+# The ApoCLypse FPGA Bitcoin Miner
+
 ## Background
-This hobby project maintained by
-[Justin T. Arthur](https://github.com/JustinTArthur) undertakes the quixotic
-task of maintaining a modern Bitcoin miner for programmable compute devices like
-GPUs. It was forked from the PyOpenCL Bitcoin Miner (poclbm), a project authored
-by [m0mchil](https://github.com/m0mchil) and contributors.
+This is forked from [JustinTArthur/apoclypsebm](https://github.com/JustinTArthur/apoclypsebm) with the aim to modify it to work with OpenCL-ready FPGA Accelerators.
 
-It features an OpenCL Kernel that has incorporated ideas or code from:
-* [diapolo](https://github.com/diapolo)
-* [m0mchil](https://github.com/m0mchil)
-* [neurobox](https://bitcointalk.org/index.php?action=profile;u=106397)
-* [phataeus](https://sourceforge.net/u/phateus/)
-* [rethaw](https://bitcointalk.org/index.php?action=profile;u=18618)
+## Maintainers and Donations
 
-If your work is represented herein and I didn't give you credit, please let me
-know. At the moment, I reserve no rights to the mining driver or the OpenCL
-kernel. They were derived from public domain works.
+The list of current maintainers and contributors to this project.
 
-## Economy
-At the time of writing, on-chip implementations of the Bitcoin mining algorithm
-will outperform this software in both time and joules expended. Under most
-conditions, mining blocks on a Bitcoin chain where on-chip implementations are
-competing would be at a tremendous waste of expended resources.
+| Name                  | Contact                   |                                                              |
+| --------------------- | ------------------------- | ------------------------------------------------------------ |
+| M. Khaled     | [@mkhaled87](https://github.com/mkhaled87)     | BTC: 1MKHALEDqXhBzqa86hj8FbDGW5HvDdA5Tq,<br />ETH: 0x14551935EDf4aF06909336084412dd805aE14b26|
 
-## Maintenance Notes
-It looks like the work sourcing threads run into i/o issues occasionally due to
-using the not-thread-safe Python http lib. I don't aim to address this as most
-of the threaded communication ought to be completely replaced by an event runner
-like asyncio or trio at some point.
 
-Thanks to @momchil for the original `getwork` code, @luke-jr @sipa and @vsergeev
-for helping me understand getblocktemplate. 
 
 ## Installation
 In an environment with Python 3.5+:
@@ -124,3 +105,7 @@ Solo mining against a Bitcoin Core node's RPC port:
 Mining on OpenCL platform 0, device 1 against a stratum server:
 
     apoclypse -p 0 -d 1 --verbose stratum://u:p@us-east.stratum.hushpool.io:3333
+    
+mining on f2pool example;
+
+    apoclypse -p 0 -d 0 --verbose stratum+tcp://mkhaled87.001:21235365876986800@btc-eu.f2pool.com:3333
