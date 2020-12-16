@@ -1,7 +1,6 @@
 # External Utility
 *.sh
 *.sh~
-*.bat
 *.bak
 
 # Byte-compiled / optimized
