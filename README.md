@@ -17,6 +17,8 @@ The list of current maintainers and contributors to this project.
 In an environment with Python 3.5+:
 
     pip3 install apoclypsebm
+    
+On Windows, if you face errors with the installation of pyopencl (as a dependency of apoclypsebm), copy the OpenCL include folder "CL\" from the FPGA implementation to the include folde rof your Python installation. You may also need to copy the OpenCL.lib to some place known to VS or the compoiler installed.
 
 ## Usage
     apoclypse [OPTION]... SERVER[#tag]...
