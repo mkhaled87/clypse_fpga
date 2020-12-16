@@ -22,7 +22,7 @@ __constant uint H[8] = {
 
 // L = 0xa54ff53a + 0xb0edbdd0 + K[0] == 0x198c7e2a2
 __constant ulong L = 0x198c7e2a2;
-#define rot(x, y) rotate(x, (u)y)
+#define rot(x, y) rotate(x, (uint)y)
 #define Ch(x, y, z) bitselect(z, y, x)
 
 // Ma now uses the Ch function, if BFI_INT is enabled, the optimized Ch version is used
@@ -90,7 +90,7 @@ __kernel void search(
 	// removed P3(18) from add because it is == 0
 	W[18] = P1(18) + P4(18) + P2(18);
 	// removed P3(19) from add because it is == 0
-	W[19] = (u)0x11002000 + P1(19) + P4(19);
+	W[19] = (uint)0x11002000 + P1(19) + P4(19);
 	// removed P2(20), P3(20) from add because it is == 0
 	W[20] = P1(20) + P4(20);
 	W[21] = P1(21);
@@ -102,7 +102,7 @@ __kernel void search(
 	W[27] = P1(27) + P3(27);
 	W[28] = P1(28) + P3(28);
 	W[29] = P1(29) + P3(29);
-	W[30] = (u)0xA00055 + P1(30) + P3(30);
+	W[30] = (uint)0xA00055 + P1(30) + P3(30);
 	
 	// Round 3
 	Vals[0] = state0 + Vals[4];
@@ -110,7 +110,7 @@ __kernel void search(
 	
 	// Round 4
 	// K[4] + W[4] == 0x3956c25b + 0x80000000U = 0xb956c25b
-	Vals[7] = (Vals[3] = (u)0xb956c25b + D1 + s1(4) + ch(4)) + H1;
+	Vals[7] = (Vals[3] = (uint)0xb956c25b + D1 + s1(4) + ch(4)) + H1;
 	Vals[3] += s0(4) + ma(4);
 
 	// Round 5
@@ -234,7 +234,7 @@ __kernel void search(
 	Vals[0] = H[0];
 	Vals[1] = H[1];
 	Vals[2] = H[2];
-	Vals[3] = (u)L + W[64];
+	Vals[3] = (uint)L + W[64];
 	Vals[4] = H[3];
 	Vals[5] = H[4];
 	Vals[6] = H[5];
@@ -258,7 +258,7 @@ __kernel void search(
 	
 	// removed P1(80), P3(80) from add because it is == 0
 	W[80] = P2(80) + P4(80);
-	W[81] = (u)0xA00000 + P4(81) + P2(81);
+	W[81] = (uint)0xA00000 + P4(81) + P2(81);
 	W[82] = P4(82) + P2(82) + P1(82);
 	W[83] = P4(83) + P2(83) + P1(83);
 	W[84] = P4(84) + P2(84) + P1(84);
@@ -273,7 +273,7 @@ __kernel void search(
 	sharound(85);
 	sharound(86);
 
-	W[87] = (u)0x11002000 + P4(87) + P3(87) + P1(87);
+	W[87] = (uint)0x11002000 + P4(87) + P3(87) + P1(87);
 	sharound(87);
 	W[88] = P4(88) + P3(88) + P1(88);
 	sharound(88);
@@ -289,7 +289,7 @@ __kernel void search(
 	W[93] = P3(93) + P1(93);
 	sharound(93);
 	// removed P4(94) from add because it is == 0
-	W[94] = (u)0x400022 + P3(94) + P1(94);
+	W[94] = (uint)0x400022 + P3(94) + P1(94);
 	sharound(94);
 	
 	W(95);
