@@ -20,6 +20,8 @@ In an environment with Python 3.5+:
     
 On Windows, if you face errors with the installation of pyopencl (as a dependency of apoclypsebm), copy the OpenCL include folder "CL\" from the FPGA implementation to the include folde rof your Python installation. You may also need to copy the OpenCL.lib to some place known to VS or the compoiler installed.
 
+I had to also copy the "OpenCL.dll" from my FPGA installation and move it inside the installatioon of PyOpenCL so that loading "_cl.cp38-win_amd64.pyd" does not cause expection of missing DLL.
+
 ## Usage
     apoclypse [OPTION]... SERVER[#tag]...
 
