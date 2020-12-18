@@ -356,6 +356,7 @@ class OpenCLMiner(Miner):
             # Exceeding the max advertised work group size
             # The overriding size will only be configure
             # at compile time isntead of at execution.
+            say_line('Supplied worksize is bigger than the max of the device. We set worksize=CL_NONE.')
             self.execution_local_dims = None
         else:
             self.execution_local_dims = (self.worksize,)
@@ -369,26 +370,19 @@ class OpenCLMiner(Miner):
                                     'Zacate', 'WinterPark', 'BeaverCreek'):
                 self.defines += ' -D BFI_INT'
 
-        kernel = pkgutil.get_data('apoclypsebm', f'{self.options.kernel}.cl')
-        m = md5(
-            f'{self.device.platform.name}{self.device.platform.version}'
-            f'{self.device.name}{self.defines}'.encode('utf-8')
-        )
-        m.update(kernel)
-        cache_name = f'{m.hexdigest()}.elf'
-
+        
         try:
-            with open(cache_name, 'rb') as binary:
+            say_line('Trying to load the kernel from the binar file: %s', self.options.binary_file)
+            with open(self.options.binary_file, 'rb') as binary:
                 self.program = cl.Program(self.context, [self.device],
                                           [binary.read()]).build(self.defines)
         except (IOError, cl.LogicError):
+            kernel = pkgutil.get_data('apoclypsebm', f'{self.options.kernel}.cl')
             kernel = kernel.decode('ascii')
             self.program = cl.Program(self.context, kernel).build(self.defines)
             if self.defines.find('-D BFI_INT') != -1:
                 patched_binary = self.patch(self.program.binaries[0])
                 self.program = cl.Program(self.context, [self.device], [patched_binary]).build(self.defines)
-            with open(cache_name, 'wb') as binary:
-                binary.write(self.program.binaries[0])
 
         self.kernel = self.program.search
 

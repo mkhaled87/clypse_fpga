@@ -75,6 +75,8 @@ group.add_option('-p', '--platform', dest='platform', default=-1, help='use plat
 group.add_option('-k', '--kernel', dest='kernel', default='apoclypse-0',
                   choices=('apoclypse-0', 'apoclypse-loopy',),
                   help='OpenCL Kernel to use. Defaults to apoclypse-0')
+group.add_option('-i', '--input-binary', dest='binary_file', default=[],
+                 help='the kernel binary file to load instead of source-building.')                  
 group.add_option('-w', '--worksize', dest='worksize', default=[],
                  help='work group size, default is maximum reported by the driver.')
 group.add_option('-f', '--frames', dest='frames', default=[],
