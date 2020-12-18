@@ -1,7 +1,7 @@
 # The ApoCLypse FPGA Bitcoin Miner
 
 ## Background
-This is forked from [JustinTArthur/apoclypsebm](https://github.com/JustinTArthur/apoclypsebm) with the aim to modify it to work with OpenCL-ready FPGA Accelerators.
+This is forked from [JustinTArthur/apoclypsebm](https://github.com/JustinTArthur/apoclypsebm) modified to work with OpenCL-ready FPGA Accelerators.
 
 ## Maintainers and Donations
 
@@ -114,6 +114,8 @@ Options:
                         Comma separated for each device. e.g. 0,2,2
     -v, --vectors       Use 2-item vectors for all devices.
 ```
+
+
 
 ### Examples
 Solo mining against a Bitcoin Core node's RPC port:
