@@ -372,7 +372,7 @@ class OpenCLMiner(Miner):
 
         
         try:
-            say_line('Trying to load the kernel from the binar file: %s', self.options.binary_file)
+            say_line('Loading the kernel from the binary file: %s', self.options.binary_file)
             with open(self.options.binary_file, 'rb') as binary:
                 self.program = cl.Program(self.context, [self.device],
                                           [binary.read()]).build(self.defines)

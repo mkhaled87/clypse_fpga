@@ -3,8 +3,8 @@
 rem All paths must be relative to current folder !
 SET BOARD=s10_sh2e1_4Gx2
 SET KERNEL_FILE=apoclypse.cl
-SET NUM_CUS=8
-SET TARGET_LWS=256 128 64
+SET NUM_CUS=11
+SET TARGET_LWS=1024 512 256 128 64
 SET OUT_BIN_FOLDER=.\%BOARD%_cu%NUM_CUS%
 
 cls
@@ -22,7 +22,7 @@ cd tmp
 for %%x in (%TARGET_LWS%) do (
     echo.
     echo -- Building kernel %KERNEL_FILE% for LWS=%%x (Started: %date% %time%
-    aoc ..\%KERNEL_FILE% -DNUM_CUS=%NUM_CUS% -DWORKSIZE=%%x -o .\apoclypse_lws%%x.aocx -board=%BOARD% -v
+    aoc ..\%KERNEL_FILE% -high-effort -DNUM_CUS=%NUM_CUS% -DWORKSIZE=%%x -o .\apoclypse_lws%%x.aocx -board=%BOARD% -v
     if exist .\apoclypse_lws%%x.aocx (
         move .\apoclypse_lws%%x.aocx ..\%OUT_BIN_FOLDER%\apoclypse_lws%%x.aocx
         echo -- AOCX Build done and AOCX file moved to: %OUT_BIN_FOLDER%\apoclypse_lws%%x.aocx
