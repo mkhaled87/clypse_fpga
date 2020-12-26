@@ -12,6 +12,10 @@ The list of current maintainers and contributors to this project.
 | M. Khaled     | [@mkhaled87](https://github.com/mkhaled87)     | BTC: 1MKHALEDqXhBzqa86hj8FbDGW5HvDdA5Tq,<br />ETH: 0x14551935EDf4aF06909336084412dd805aE14b26|
 
 
+## Tested Devices
+| Device                | Details                                                       | Hashrates                           |
+| --------------------- | ------------------------------------------------------------- | ----------------------------------- |
+| Terasic DE10-Pro<br /><img src="https://www.terasic.com.tw/attachment/archive/1144/image/RevB_45.jpg" width="100">| Type: Accelerator/FPGA<br />FPGA: Stratix 10 GX/SX<br />RAM: 8 GB DDR4<br />More details: [Terasic website](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=13&No=1144&PartNo=1) | s10_sh2e1_4Gx2 (11 CU)/LWS_256: 4.3 Gh/s. |
 
 ## Installation and Usage
 In an environment with Python 3.5+:
